@@ -38,12 +38,6 @@ class Calendar extends React.Component {
     });
   };
 
-  nextMonth = () => {
-    isThisYear.setState({
-      currentMonth: addMonths(this.state.currentMonth, 1)
-    });
-  };
-
   renderDays() {
     const dateFormat = "EEEE";
     const days = [];
@@ -108,6 +102,12 @@ class Calendar extends React.Component {
     this.setState({
       currentMonth: subMonths(this.state.currentMonth, 1)
     })
+  };
+
+  nextMonth = () => {
+    this.setState({
+      currentMonth: addMonths(this.state.currentMonth, 1)
+    });
   };
 
   render() {
