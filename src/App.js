@@ -8,6 +8,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header>
+          {/* contains the logo and reactcalendar text */}
           <div id="logo">
             <span className="icon">date_range</span>
             <span>
@@ -16,7 +17,10 @@ class App extends React.Component {
           </div>
         </header>
         <main>
-          <Calendar />
+          <div className="calendar-container">
+            {/* contains the calendar component itself */}
+            <Calendar />
+          </div>
         </main>
       </div>
     );

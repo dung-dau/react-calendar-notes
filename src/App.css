@@ -1,8 +1,10 @@
+
 /* FONT IMPORTS */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
+/* applies to the calendar icon, the left and right arrows */
 .icon {
   font-family: 'Material Icons', serif;
   font-style: normal;
@@ -50,6 +52,7 @@ body {
     position: relative;
 }
 
+/* the header which contains a div that contains the logo and react calendar text */
 header {
   display: block;
   width: 100%;
@@ -58,6 +61,7 @@ header {
   background: var(--neutral-color);
 }
 
+/* targets the div inside of the header */
 header #logo {
   font-size: 175%;
   text-align: center;
@@ -65,10 +69,15 @@ header #logo {
   line-height: 1;
 }
 
+/* targets the icon inside of the #logo div */
 header #logo .icon {
   padding-right: .25em;
 }
 
+/* 
+  targets the div that contains the calendar component
+  and eventually the scheduler component
+ */
 main {
   display: block;
   margin: 0 auto;
@@ -79,6 +88,12 @@ main {
 
 /* GRID */
 
+/* 
+  used by:
+    -the div that contains the app header
+    -the div that contains the days of the week
+    -the div that contains 7 days of a particular week
+*/
 .row {
   margin: 0;
   padding: 0;
@@ -88,34 +103,48 @@ main {
   width: 100%;
 }
 
-.row-middle {
-  align-items: center;
-}
-
+/* 
+  used by:
+    -the left arrow
+    -the container for the month and year
+    -the right arrow
+    -a particular day of the week
+    -a particular day of the month
+ */
 .col {
   flex-grow: 1;
   flex-basis: 0;
   max-width: 100%;
 }
 
+/* targets the outer div of the left arrow */
 .col-start {
   justify-content: flex-start;
   text-align: left;
+  margin-left: 1em;
 }
 
+/*
+  used by:
+    -the month/year text
+    -each day of the week
+*/
 .col-center {
   justify-content: center;
   text-align: center;
 }
 
+/* targets the outer div of the right arrow */
 .col-end {
   justify-content: flex-end;
   text-align: right;
+  margin-right: 1em;
 }
 
 
 /* Calendar */
 
+/* targets the div that surrounds the entire calendar */
 .calendar {
   display: block;
   position: relative;
@@ -124,6 +153,7 @@ main {
   border: 1px solid var(--border-color);
 }
 
+/* targets the div that contains the month/year text and arrows */
 .calendar .header {
   text-transform: uppercase;
   font-weight: 700;
@@ -132,25 +162,30 @@ main {
   border-bottom: 1px solid var(--border-color);
 }
 
+/* when the user hovers away from an arrow */
 .calendar .header .icon {
   cursor: pointer;
   transition: .15s ease-out;
 }
 
+/* when the user hovers on an arrow */
 .calendar .header .icon:hover {
   transform: scale(1.75);
   transition: .25s ease-out;
   color: var(--main-color);
 }
 
+/* targets the inner div of the left arrow */
 .calendar .header .icon:first-of-type {
   margin-left: 1em;
 }
 
+/* targets the innder div of the right arrow */
 .calendar .header .icon:last-of-type {
   margin-right: 1em;
 }
 
+/* targets the outer div of the days of the week */
 .calendar .days {
   text-transform: uppercase;
   font-weight: 400;
@@ -160,6 +195,7 @@ main {
   border-bottom: 1px solid var(--border-color);
 }
 
+/* targets the inner div of the days of the month */
 .calendar .body .cell {
   position: relative;
   height: 5em;
@@ -170,29 +206,35 @@ main {
   transition: 0.25s ease-out;
 }
 
+/* when the user hovers the inner div of the days of the month */
 .calendar .body .cell:hover {
   background: var(--bg-color);
   transition: 0.5s ease-out;
 }
 
+/* the styling for the current day */
 .calendar .body .selected {
   border-left: 10px solid transparent;
   border-image: linear-gradient(45deg, #1a8fff 0%,#53cbf1 40%);
   border-image-slice: 1;
 }
 
+/* affects the div for a specific week */
 .calendar .body .row {
   border-bottom: 1px solid var(--border-color);
 }
 
+/* overwrites the styling for the div for the last week */
 .calendar .body .row:last-child {
   border-bottom: none;
 }
 
+/* targets the right most day div for the last day of the week*/
 .calendar .body .cell:last-child {
   border-right: none;
 }
 
+/* targets the number representing the day of the month inside the cell */
 .calendar .body .cell .number {
   position: absolute;
   font-size: 82.5%;
@@ -202,11 +244,13 @@ main {
   font-weight: 700;
 }
 
+/* styling for days that are not in the current month */
 .calendar .body .disabled {
   color: var(--text-color-light);
   pointer-events: none;
 }
 
+/* targets the background change when the user hovers over a specific day */
 .calendar .body .cell .bg {
   font-weight: 700;
   line-height: 1;
@@ -220,11 +264,13 @@ main {
   letter-spacing: -.07em;
 }
 
+/* styling that affects the background change and the current day */
 .calendar .body .cell:hover .bg, .calendar .body .selected .bg  {
-  opacity: 0.05;
+  opacity: 0.15;
   transition: .5s ease-in;
 }
 
+/* targets the div that contains the day of the month */
 .calendar .body .col {
   flex-grow: 0;
   flex-basis: calc(100%/7);
