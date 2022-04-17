@@ -23,21 +23,7 @@
   font-feature-settings: 'liga';
 }
 
-
-/* VARIABLES */
-
-:root {
-  --main-color: #1a8fff;
-  --text-color: #777;
-  --text-color-light: #ccc;
-  --border-color: #eee;
-  --bg-color: #f9f9f9;
-  --neutral-color: #fff;
-}
-
-
 /* GENERAL */
-
 * {
   box-sizing: border-box;
 }
@@ -56,7 +42,7 @@ body {
 header {
   display: block;
   width: 100%;
-  padding: 1.75em 0;
+  padding: 1em 0;
   border-bottom: 1px solid var(--border-color);
   background: var(--neutral-color);
 }
@@ -77,11 +63,11 @@ header #logo .icon {
 /* 
   targets the div that contains the calendar component
   and eventually the scheduler component
- */
+*/
 main {
   display: block;
   margin: 0 auto;
-  margin-top: 5em;
+  margin-top: 1em;
   max-width: 50em;
 }
 
@@ -148,17 +134,18 @@ main {
 .calendar {
   display: block;
   position: relative;
-  width: 100%;
+  width: 95%;
   background: var(--neutral-color);
   border: 1px solid var(--border-color);
+  margin-left: 2.5%;
 }
 
 /* targets the div that contains the month/year text and arrows */
 .calendar .header {
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 115%;
-  padding: 1.5em 0;
+  font-size: 100%;
+  padding: 0.75em;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -198,12 +185,13 @@ main {
 /* targets the inner div of the days of the month */
 .calendar .body .cell {
   position: relative;
-  height: 5em;
+  height: 3em;
   border-right: 1px solid var(--border-color);
   overflow: hidden;
   cursor: pointer;
   background: var(--neutral-color);
   transition: 0.25s ease-out;
+  text-align: center;
 }
 
 /* when the user hovers the inner div of the days of the month */
@@ -214,9 +202,8 @@ main {
 
 /* the styling for the current day */
 .calendar .body .selected {
-  border-left: 10px solid transparent;
-  border-image: linear-gradient(45deg, #1a8fff 0%,#53cbf1 40%);
-  border-image-slice: 1;
+  background-color: #1a8fff;
+  color: white;
 }
 
 /* affects the div for a specific week */
@@ -239,8 +226,8 @@ main {
   position: absolute;
   font-size: 82.5%;
   line-height: 1;
-  top: .75em;
-  right: .75em;
+  top: 1.4em;
+  right: 1.5em;
   font-weight: 700;
 }
 
@@ -248,20 +235,6 @@ main {
 .calendar .body .disabled {
   color: var(--text-color-light);
   pointer-events: none;
-}
-
-/* targets the background change when the user hovers over a specific day */
-.calendar .body .cell .bg {
-  font-weight: 700;
-  line-height: 1;
-  color: var(--main-color);
-  opacity: 0;
-  font-size: 8em;
-  position: absolute;
-  top: -.2em;
-  right: -.05em;
-  transition: .25s ease-out;
-  letter-spacing: -.07em;
 }
 
 /* styling that affects the background change and the current day */

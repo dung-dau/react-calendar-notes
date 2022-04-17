@@ -1,36 +1,32 @@
 
 import React from "react";
-import { format, addMonths, subMonths, addDays, startOfMonth, isSameDay, parse, isSameMonth } from 'date-fns';
+import { format, addMonths, subMonths, addDays, startOfMonth, isSameDay, isSameMonth } from 'date-fns';
 import { endOfMonth, endOfWeek, startOfWeek } from "date-fns/esm";
+import { useState } from "react";
 
-class Calendar extends React.Component {
+function Calendar({parentState, setState}) {
   // contains the state for the current month and the current date
-  state = {
-    currentMonth: new Date(),
-    selectedDate: new Date()
-  };
+  // const [state, setState] = useState(parentState);
 
   // Renders the top part of the calendar
-  renderHeader() {
+  const renderHeader = () => {
     const dateFormat = "MMMM yyyy";
-    const formattedDate = format(this.state.currentMonth, dateFormat);
-    console.log(formattedDate)
     return (
       <div className="header row flex-middle">
         {/* the left arrow */}
         <div className="col col-start">
-          <div className="icon" onClick={this.prevMonth}>
+          <div className="icon" onClick={prevMonth}>
             chevron_left
           </div>
         </div>
         {/* the middle that displays the current month and year */}
         <div className="col col-center">
           <span>
-            {format(this.state.currentMonth, dateFormat)}
+            {format(parentState.currentMonth, dateFormat)}
           </span>
         </div>
         {/* the right arrow */}
-        <div className="col col-end" onClick={this.nextMonth}>
+        <div className="col col-end" onClick={nextMonth}>
           <div className="icon">chevron_right</div>
         </div>
       </div>
@@ -38,18 +34,19 @@ class Calendar extends React.Component {
   }
 
   // sets the clicked on date for styling
-  onDateClick = day => {
-    this.setState({
-      selectedDate: day
+  const onDateClick = day => {
+    setState({
+      ...parentState,
+      currentDate: day,
     });
   };
 
   // displays the days of the week
-  renderDays() {
+  const renderDays = () => {
     const dateFormat = "E";
     const days = [];
 
-    let startDate = startOfWeek(this.state.currentMonth)
+    let startDate = startOfWeek(parentState.currentMonth)
 
     for(let i = 0; i < 7; i++) {
       days.push(
@@ -62,8 +59,8 @@ class Calendar extends React.Component {
   }
 
   // renders the days of the month
-  renderCells() {
-    const { currentMonth, selectedDate } = this.state;
+  const renderCells = () => {
+    const { currentMonth, currentDate } = parentState;
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart);
@@ -87,13 +84,13 @@ class Calendar extends React.Component {
             className={`col cell ${
               !isSameMonth(day, monthStart)
                 ? "disabled"
-                : isSameDay(day, selectedDate) ? "selected" : ""
+                : isSameDay(day, currentDate) ? "selected" : ""
+              
             }`}
             key={day}
-            onClick={() => this.onDateClick(parse(cloneDay))}
+            onClick={() => onDateClick(cloneDay)}
           >
             <span className="number">{formattedDate}</span>
-            <span className="bg">{formattedDate}</span>
           </div>
         );
         day = addDays(day, 1);
@@ -110,28 +107,28 @@ class Calendar extends React.Component {
   };
 
   // changes the month when the left arrow is clicked
-  prevMonth = () => {
-    this.setState({
-      currentMonth: subMonths(this.state.currentMonth, 1)
+  const prevMonth = () => {
+    setState({
+      ...parentState,
+      currentMonth: subMonths(parentState.currentMonth, 1)
     })
   };
 
   // changes the month when the right arrow is clicked
-  nextMonth = () => {
-    this.setState({
-      currentMonth: addMonths(this.state.currentMonth, 1)
+  const nextMonth = () => {
+    setState({
+      ...parentState,
+      currentMonth: addMonths(parentState.currentMonth, 1)
     });
   };
 
-  render() {
-    return (
-      <div className="calendar">
-        {this.renderHeader()}
-        {this.renderDays()}
-        {this.renderCells()}
-      </div>
-    );
-  }
+  return (
+    <div className="calendar">
+      {renderHeader()}
+      {renderDays()}
+      {renderCells()}
+    </div>
+  );
 }
 
 export default Calendar;
