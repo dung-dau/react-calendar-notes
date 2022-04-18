@@ -22,3 +22,27 @@ textarea {
   height: 100%;
   width: 100%;
 }
+
+.button {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  margin-top: 1rem;
+  padding: 15px;
+}
+
+.button:hover {
+  background-color: #0067cb;
+}
+
+.button:active{
+  position:relative;
+  background-color: var(--main-color);
+}
+
+@media screen and (min-width: 640px){
+  .note {
+    height: 12rem;
+  }
+  
+}
