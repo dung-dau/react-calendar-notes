@@ -21,8 +21,11 @@ function Note({parentState, setState}) {
             )
             if(arr.length === 0) {
                 textArea.setAttribute("placeholder", "Enter a new note...");
-                textArea.value = ""
             } else {
+                if(textArea.value === "") {
+                    textArea.setAttribute("placeholder", "Enter a new note...");
+                    return;
+                }
                 textArea.setAttribute("placeholder", "")
                 getDoc(docRef).then((doc) => {
                     textArea.value = doc.data().note
