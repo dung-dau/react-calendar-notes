@@ -20,16 +20,16 @@ function Note({parentState, setState}) {
                 doc.id === format(parentState.currentDate, dateFormat)
             )
             if(arr.length === 0) {
+                textArea.value = ""
                 textArea.setAttribute("placeholder", "Enter a new note...");
             } else {
-                if(textArea.value === "") {
-                    textArea.setAttribute("placeholder", "Enter a new note...");
-                    return;
-                }
                 textArea.setAttribute("placeholder", "")
                 getDoc(docRef).then((doc) => {
                     textArea.value = doc.data().note
                 })
+                if(textArea.value === "") {
+                    textArea.setAttribute("placeholder", "Enter a new note...");
+                }
             }
         })
     }, [parentState, colRef, docRef])
@@ -52,7 +52,7 @@ function Note({parentState, setState}) {
             <textarea
                 id="noteContent"
             />
-            <button onClick={() => {
+            <button className='button' onClick={() => {
                 changeText(document.getElementById("noteContent").value)
             }}>
                 Save
