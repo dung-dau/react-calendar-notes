@@ -1,4 +1,4 @@
-### Snail Mail
+### React Calendar Notes
 A calendar app that allows users to make notes for specific days created with HTML, CSS, React and Firebase
 
 ## Demo
