@@ -12,8 +12,8 @@ A live demo can be found at: https://time-management-app-ca473.web.app
 
 ## Installation Instructions
 Run the following commands: <br/><br/>
-`git clone https://github.com/dung-dau/calendar-app.git` <br/><br/>
-`cd calendar-app` <br/><br/>
+`git clone https://github.com/dung-dau/react-calendar-notes.git` <br/><br/>
+`cd react-calendar-notes` <br/><br/>
 `npm install` <br/><br/>
 `npm run start` <br/><br/>
 Unless a port is specified or if port 3000 is already being used by another applcation, <br />
